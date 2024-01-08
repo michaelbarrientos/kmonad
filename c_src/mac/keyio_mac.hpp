@@ -75,7 +75,8 @@ void open_matching_devices(char *product, io_iterator_t iter) {
             return;
         }
     }
-    CFStringRef cfkarabiner = CFStringCreateWithCString(kCFAllocatorDefault, "Karabiner VirtualHIDKeyboard", CFStringGetSystemEncoding());
+    CFStringRef cfkarabiner = CFStringCreateWithCString(kCFAllocatorDefault,
+	"Karabiner", CFStringGetSystemEncoding());
     if(cfkarabiner == NULL) {
         print_iokit_error("CFStringCreateWithCString");
         if(product) {
@@ -89,7 +90,7 @@ void open_matching_devices(char *product, io_iterator_t iter) {
             print_iokit_error("IORegistryEntryCreateCFProperty");
             continue;
         }
-        bool match = (CFStringCompare(cfcurr, cfkarabiner, 0) != kCFCompareEqualTo);
+	bool match = !CFStringHasPrefix(cfcurr, cfkarabiner);
         if(product) {
             match = match && (CFStringCompare(cfcurr, cfproduct, 0) == kCFCompareEqualTo);
         }
