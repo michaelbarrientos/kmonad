@@ -9,7 +9,7 @@
 #include <AvailabilityMacros.h>
 
 /* The name was changed from "Master" to "Main" in Apple SDK 12.0 (Monterey) */
-#if !defined (MAC_OS_X_VERSION_12_0) || (MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_12_0)
+#if !defined (MAC_OS_VERSION_12_0) || (MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_VERSION_12_0)
     #define kIOMainPortDefault kIOMasterPortDefault
 #endif
 
